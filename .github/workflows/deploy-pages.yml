@@ -18,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FRONTEND_BACKEND_BASE_URL_PROD: https://pasameloaexcel-core-production.up.railway.app
     steps:
       - name: Checkout
         uses: actions/checkout@v4

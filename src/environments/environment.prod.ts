@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendBaseUrl: "https://api-pasameloaexcel.up.railway.app",
+  backendBaseUrl: "https://pasameloaexcel-core-production.up.railway.app",
 };

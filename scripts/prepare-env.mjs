@@ -6,7 +6,7 @@ const envFilePath = path.join(rootDir, '.env');
 
 const defaults = {
   FRONTEND_BACKEND_BASE_URL_DEV: 'http://localhost:8000',
-  FRONTEND_BACKEND_BASE_URL_PROD: 'https://api-pasameloaexcel.up.railway.app',
+  FRONTEND_BACKEND_BASE_URL_PROD: 'https://pasameloaexcel-core-production.up.railway.app',
 };
 
 function parseEnvFile(rawContent) {
