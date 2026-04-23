@@ -1,0 +1,101 @@
+<div class="table-toolbar">
+  <button type="button" class="secondary-btn" (click)="addRow.emit()">Agregar fila</button>
+</div>
+
+<div class="table-wrap" [class.resizing]="isResizing" [style.max-height]="maxHeight">
+  <table>
+    <colgroup>
+      <col *ngFor="let column of columns" [style.width.px]="getColumnWidth(column)" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>
+          <div class="th-content">Fecha</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'fecha')"></span>
+        </th>
+        <th>
+          <div class="th-content">Descripcion</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'descripcion')"></span>
+        </th>
+        <th>
+          <div class="th-content">Debito</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'debito')"></span>
+        </th>
+        <th>
+          <div class="th-content">Credito</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'credito')"></span>
+        </th>
+        <th>
+          <div class="th-content">Saldo</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'saldo')"></span>
+        </th>
+        <th>
+          <div class="th-content">Pagina</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'pagina')"></span>
+        </th>
+        <th>
+          <div class="th-content">Confianza</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'confianza')"></span>
+        </th>
+        <th>
+          <div class="th-content">Acciones</div>
+          <span class="resize-handle" (mousedown)="startColumnResize($event, 'acciones')"></span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let row of rows; trackBy: trackByRowId">
+        <tr>
+          <td class="cell-edit">
+            <input
+              class="cell-input"
+              type="text"
+              [ngModel]="row.fecha ?? ''"
+              (ngModelChange)="editField.emit({ rowId: row.row_id, field: 'fecha', value: $event })"
+            />
+          </td>
+          <td class="cell-edit">
+            <input
+              class="cell-input"
+              type="text"
+              [ngModel]="row.descripcion"
+              (ngModelChange)="editField.emit({ rowId: row.row_id, field: 'descripcion', value: $event })"
+            />
+          </td>
+          <td class="cell-edit num-cell">
+            <input
+              class="cell-input num-input"
+              type="number"
+              step="0.01"
+              [ngModel]="row.debito"
+              (ngModelChange)="editField.emit({ rowId: row.row_id, field: 'debito', value: $event?.toString() ?? '' })"
+            />
+          </td>
+          <td class="cell-edit num-cell">
+            <input
+              class="cell-input num-input"
+              type="number"
+              step="0.01"
+              [ngModel]="row.credito"
+              (ngModelChange)="editField.emit({ rowId: row.row_id, field: 'credito', value: $event?.toString() ?? '' })"
+            />
+          </td>
+          <td class="cell-edit num-cell">
+            <input
+              class="cell-input num-input"
+              type="number"
+              step="0.01"
+              [ngModel]="row.saldo"
+              (ngModelChange)="editField.emit({ rowId: row.row_id, field: 'saldo', value: $event?.toString() ?? '' })"
+            />
+          </td>
+          <td class="readonly center-cell">{{ row.pagina ?? '-' }}</td>
+          <td class="readonly num-cell">{{ row.confianza !== null ? (row.confianza | number: '1.2-2') : '-' }}</td>
+          <td class="actions">
+            <button type="button" class="danger-btn" (click)="removeRow.emit(row.row_id)">Borrar</button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

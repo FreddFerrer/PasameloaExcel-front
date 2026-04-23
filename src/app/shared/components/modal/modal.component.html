@@ -1,0 +1,19 @@
+<div class="overlay" [class.visible]="visible" (click)="onBackdropClick($event)">
+  <div
+    class="dialog"
+    [style.width]="width"
+    [style.max-width]="maxWidth"
+    [style.max-height]="maxHeight"
+    [class.visible]="visible"
+    role="dialog"
+    aria-modal="true"
+  >
+    <header class="header">
+      <h3>{{ title }}</h3>
+      <button type="button" class="close-btn" (click)="closeModal.emit()" aria-label="Cerrar">x</button>
+    </header>
+    <section class="content">
+      <ng-content></ng-content>
+    </section>
+  </div>
+</div>

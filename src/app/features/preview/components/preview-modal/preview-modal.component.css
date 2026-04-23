@@ -1,0 +1,262 @@
+.meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, max-content));
+  justify-content: start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.meta > div {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  color: #475569;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.meta strong {
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.comparison-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0f172a;
+  font-weight: 500;
+  font-size: 0.86rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(560px, 1.3fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.pane {
+  border: 1px solid #dbe3ec;
+  border-radius: 10px;
+  background: #fff;
+  min-width: 0;
+}
+
+.pane-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.pane-title h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.pane-title a {
+  font-size: 0.8rem;
+}
+
+.pane-scroll {
+  height: min(62vh, 620px);
+  overflow: auto;
+}
+
+.pdf-pane {
+  background: #eef2f6;
+}
+
+.pdf-object {
+  width: 100%;
+  min-height: 1400px;
+  border: 0;
+  display: block;
+  background: #f8fafc;
+}
+
+.pdf-empty {
+  margin: 0;
+  padding: 18px;
+  color: #475569;
+}
+
+:host ::ng-deep .panel-sheet .table-wrap {
+  border: 0;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.download-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.download-name-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 260px;
+}
+
+.download-name-field span {
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.download-name-field input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 10px;
+  min-height: 36px;
+  font-size: 0.9rem;
+}
+
+.download-name-field input:focus {
+  outline: 2px solid #bae6fd;
+  border-color: #38bdf8;
+}
+
+.support-callout {
+  margin: 10px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid #f59e0b;
+  background: #fffbeb;
+  border-radius: 8px;
+}
+
+.support-callout h3 {
+  margin: 0 0 6px;
+  color: #92400e;
+  font-size: 1rem;
+}
+
+.support-callout p {
+  margin: 0 0 8px;
+  color: #78350f;
+}
+
+.support-callout .privacy {
+  font-size: 0.9rem;
+}
+
+.support-btn {
+  border: 1px solid #d97706;
+  background: #f59e0b;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  min-width: 230px;
+  min-height: 40px;
+  cursor: pointer;
+}
+
+.support-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.support-message {
+  margin-top: 8px !important;
+  font-weight: 600;
+}
+
+.download-btn {
+  border: 0;
+  background: #0ea5e9;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  min-width: 150px;
+  min-height: 36px;
+  cursor: pointer;
+}
+
+.download-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.error {
+  color: #b91c1c;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 1280px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pane-scroll {
+    height: 52vh;
+  }
+}
+
+@media (max-width: 1000px) {
+  .meta {
+    grid-template-columns: repeat(2, minmax(120px, max-content));
+  }
+}
+
+@media (max-width: 700px) {
+  .meta {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-controls {
+    justify-content: flex-start;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .download-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .download-name-field {
+    min-width: 0;
+  }
+
+  .download-btn {
+    width: 100%;
+  }
+}

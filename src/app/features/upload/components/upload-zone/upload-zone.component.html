@@ -1,0 +1,28 @@
+﻿<div
+  class="upload-zone"
+  [class.dragging]="dragging"
+  [class.has-file]="fileName"
+  [class.disabled]="disabled"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
+  <input
+    #fileInput
+    type="file"
+    accept="application/pdf,.pdf"
+    (change)="onFileInputChange($event)"
+    [disabled]="disabled"
+    hidden
+  />
+
+  <span class="zone-kicker">PDF</span>
+  <h3>Solta o selecciona tu archivo</h3>
+
+  <button type="button" class="choose-btn" [disabled]="disabled" (click)="fileInput.click()">
+    Seleccionar PDF
+  </button>
+
+  <p class="file-name" *ngIf="fileName">Archivo cargado: <strong>{{ fileName }}</strong></p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>

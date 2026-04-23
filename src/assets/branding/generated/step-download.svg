@@ -1,0 +1,26 @@
+<svg width="320" height="180" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgDownload" x1="24" y1="18" x2="292" y2="162" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF2FF"/>
+      <stop offset="1" stop-color="#E0E7FF"/>
+    </linearGradient>
+    <linearGradient id="btnDownload" x1="120" y1="108" x2="220" y2="144" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="12" y="12" width="296" height="156" rx="20" fill="url(#bgDownload)" stroke="#C7D2FE" stroke-width="2"/>
+
+  <rect x="50" y="34" width="136" height="100" rx="12" fill="#FFFFFF" stroke="#A5B4FC"/>
+  <rect x="66" y="54" width="74" height="8" rx="4" fill="#C7D2FE"/>
+  <rect x="66" y="70" width="94" height="8" rx="4" fill="#E0E7FF"/>
+  <rect x="66" y="86" width="64" height="8" rx="4" fill="#E0E7FF"/>
+
+  <rect x="186" y="104" width="88" height="38" rx="12" fill="url(#btnDownload)"/>
+  <path d="M229 114V127" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M223 122L229 128L235 122" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="218" y="132" width="22" height="3" rx="1.5" fill="#BFDBFE"/>
+
+  <circle cx="250" cy="60" r="8" fill="#4338CA" fill-opacity="0.14"/>
+</svg>

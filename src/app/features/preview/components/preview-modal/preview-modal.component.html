@@ -1,0 +1,103 @@
+<app-modal
+  [visible]="visible"
+  title="Preview editable"
+  (closeModal)="close.emit()"
+  width="98vw"
+  maxWidth="98vw"
+  maxHeight="94vh"
+>
+  <ng-container *ngIf="previewData as data">
+    <div class="meta">
+      <div>
+        <span class="label">Archivo</span>
+        <strong>{{ data.filename }}</strong>
+      </div>
+      <div>
+        <span class="label">Template</span>
+        <strong>{{ data.template_detected || 'No detectado' }}</strong>
+      </div>
+      <div>
+        <span class="label">Filas</span>
+        <strong>{{ editableRows.length }}</strong>
+      </div>
+    </div>
+
+    <section class="comparison-controls">
+      <label class="toggle">
+        <input type="checkbox" [(ngModel)]="syncScroll" />
+        <span>Sincronizar scroll PDF/preview</span>
+      </label>
+    </section>
+
+    <section class="support-callout" *ngIf="data.support_recommended">
+      <h3>La extraccion parece de baja calidad</h3>
+      <p>
+        Te recomendamos enviar este extracto a soporte para mejorar el template.
+      </p>
+      <p class="privacy">
+        Este extracto se usara unicamente para mejorar el servicio GRATIS de PasameloaExcel y no permanecera en ninguna base de datos.
+      </p>
+      <button type="button" class="support-btn" [disabled]="sendingSupport" (click)="sendSupport.emit()">
+        <span *ngIf="!sendingSupport">Enviar extracto a soporte</span>
+        <app-loading-spinner *ngIf="sendingSupport" label="Enviando a soporte..." [compact]="true" />
+      </button>
+      <p class="support-message" *ngIf="supportMessage">{{ supportMessage }}</p>
+    </section>
+
+    <section class="comparison-grid">
+      <article class="pane panel-pdf">
+        <header class="pane-title">
+          <h4>PDF original</h4>
+          <a *ngIf="sourcePdfUrl" [href]="sourcePdfUrl" target="_blank" rel="noopener noreferrer">Abrir aparte</a>
+        </header>
+        <div #pdfPane class="pane-scroll pdf-pane" (scroll)="onPaneScroll('pdf')">
+          <ng-container *ngIf="pdfEmbedUrl && sourcePdfUrl; else missingPdf">
+            <iframe
+              [src]="pdfEmbedUrl"
+              class="pdf-object"
+              title="PDF original"
+            ></iframe>
+          </ng-container>
+          <ng-template #missingPdf>
+            <p class="pdf-empty">No hay PDF disponible para vista embebida.</p>
+          </ng-template>
+        </div>
+      </article>
+
+      <article class="pane panel-sheet">
+        <header class="pane-title">
+          <h4>Preview editable</h4>
+        </header>
+        <div #tablePane class="pane-scroll sheet-pane" (scroll)="onPaneScroll('table')">
+          <app-preview-table
+            [rows]="editableRows"
+            [maxHeight]="'none'"
+            (addRow)="addRow.emit()"
+            (removeRow)="removeRow.emit($event)"
+            (editField)="editField.emit($event)"
+          />
+        </div>
+      </article>
+    </section>
+
+    <div class="footer">
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <div class="download-controls">
+        <label class="download-name-field">
+          <span>Nombre del archivo</span>
+          <input
+            type="text"
+            [value]="downloadFilename"
+            [attr.maxlength]="downloadFilenameMaxLength"
+            [disabled]="exporting"
+            (input)="onDownloadFilenameInput($any($event.target).value)"
+          />
+        </label>
+        <button type="button" class="download-btn" [disabled]="exporting" (click)="downloadExcel.emit()">
+          <span *ngIf="!exporting">Descargar Excel</span>
+          <app-loading-spinner *ngIf="exporting" label="Generando Excel..." [compact]="true" />
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</app-modal>

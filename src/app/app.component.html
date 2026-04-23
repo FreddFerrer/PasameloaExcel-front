@@ -1,0 +1,82 @@
+﻿<main class="page">
+  <header class="top-bar">
+    <img class="top-brandmark" src="assets/branding/header-brandmark-v2.png" alt="PasameloaExcel" />
+    <p class="top-trust">Tus datos se procesan con tratamiento privado y seguro.</p>
+  </header>
+
+  <section class="stage">
+    <div class="stage-head">
+      <h2>Subí tu extracto bancario</h2>
+      <p>Arrastra o selecciona un archivo para iniciar la conversion.</p>
+    </div>
+
+    <div class="stage-panel">
+      <app-upload-zone
+        [fileName]="selectedFile?.name || null"
+        [errorMessage]="selectedFileError"
+        [disabled]="loadingPreview"
+        (fileSelected)="onFileSelected($event)"
+      />
+
+      <div class="action-block">
+        <button type="button" class="primary-btn" (click)="onGeneratePreview()" [disabled]="!selectedFile || loadingPreview">
+          Generar Preview
+        </button>
+        <app-loading-spinner *ngIf="loadingPreview" label="Procesando archivo..." />
+      </div>
+
+      <p class="error" *ngIf="globalError">{{ globalError }}</p>
+    </div>
+
+    <ol class="flow-steps" aria-label="Pasos de uso">
+      <li>1. Subir PDF</li>
+      <li>2. Controlar y comparar con el PDF original</li>
+      <li>3. Descargar</li>
+    </ol>
+  </section>
+</main>
+
+<app-preview-modal
+  [visible]="isPreviewModalOpen"
+  [previewData]="previewData"
+  [sourcePdfUrl]="sourcePdfUrl"
+  [editableRows]="editableRows"
+  [exporting]="exportingExcel"
+  [sendingSupport]="sendingSupport"
+  [errorMessage]="globalError"
+  [supportMessage]="supportMessage"
+  [downloadFilename]="downloadFilename"
+  [downloadFilenameMaxLength]="maxDownloadFilenameLength"
+  (close)="onCloseModal()"
+  (addRow)="onAddRow()"
+  (removeRow)="onRemoveRow($event)"
+  (editField)="onEditField($event)"
+  (downloadFilenameChange)="onDownloadFilenameChange($event)"
+  (downloadExcel)="onDownloadExcel()"
+  (sendSupport)="onSendSupport()"
+/>
+
+<app-modal
+  [visible]="showSupportRecommendationModal"
+  title="Recomendación de soporte"
+  width="680px"
+  (closeModal)="onDismissSupportRecommendationModal()"
+>
+  <div class="support-recommendation-modal">
+    <p>
+      La extracción parece de baja calidad. Te recomendamos enviar este extracto a soporte para mejorar el template.
+    </p>
+    <p class="trust">
+      Este extracto se usará únicamente para mejorar el servicio GRATIS de PasameloaExcel y no permanecerá en ninguna base de datos.
+    </p>
+    <div class="actions">
+      <button type="button" class="ghost-btn" [disabled]="sendingSupport" (click)="onDismissSupportRecommendationModal()">
+        Ahora no
+      </button>
+      <button type="button" class="primary-btn" [disabled]="sendingSupport" (click)="onSendSupport()">
+        <span *ngIf="!sendingSupport">Enviar extracto a soporte</span>
+        <app-loading-spinner *ngIf="sendingSupport" label="Enviando..." [compact]="true" />
+      </button>
+    </div>
+  </div>
+</app-modal>

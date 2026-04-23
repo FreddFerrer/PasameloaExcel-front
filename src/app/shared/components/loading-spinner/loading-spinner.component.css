@@ -1,0 +1,36 @@
+.spinner-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #1e293b;
+}
+
+.spinner-wrap.compact {
+  gap: 8px;
+  font-size: 13px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(148, 163, 184, 0.35);
+  border-top-color: #2563eb;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-wrap.compact .spinner {
+  width: 14px;
+  height: 14px;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

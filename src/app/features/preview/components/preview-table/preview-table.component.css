@@ -1,0 +1,174 @@
+.table-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+
+.table-wrap {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 55vh;
+  background: #fff;
+}
+
+.table-wrap.resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 12px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #eef5ff;
+  z-index: 2;
+  text-align: left;
+  font-size: 12px;
+  color: #0f172a;
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  padding: 0;
+  position: relative;
+}
+
+th,
+td {
+  border: 1px solid #dbe3ed;
+  vertical-align: middle;
+  background: #fff;
+}
+
+.th-content {
+  padding: 5px 16px 5px 6px;
+  white-space: nowrap;
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 4;
+}
+
+.resize-handle:hover {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+.cell-edit {
+  padding: 0;
+}
+
+.cell-input {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  padding: 4px 6px;
+  min-height: 27px;
+  font-size: 12px;
+  font-family: inherit;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.cell-input:focus {
+  outline: 2px solid #60a5fa;
+  outline-offset: -2px;
+  background: #eff6ff;
+}
+
+.num-cell {
+  text-align: right;
+}
+
+.num-input {
+  text-align: right;
+}
+
+.num-input::-webkit-outer-spin-button,
+.num-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.num-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.center-cell {
+  text-align: center;
+}
+
+.readonly {
+  color: #1f2937;
+  font-weight: 500;
+  background: #f8fbff;
+  padding: 4px 6px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  padding: 3px;
+}
+
+.secondary-btn,
+.light-btn,
+.danger-btn {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #fff;
+  line-height: 1.1;
+}
+
+.secondary-btn,
+.light-btn {
+  color: #0f172a;
+}
+
+.light-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.danger-btn {
+  color: #991b1b;
+  border-color: #fecaca;
+  background: #fff7f7;
+}
+
+.detail-row td {
+  background: #f7fbff;
+  padding: 8px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.detail-grid p {
+  margin: 4px 0 0;
+  color: #334155;
+}
+
+@media (max-width: 900px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
